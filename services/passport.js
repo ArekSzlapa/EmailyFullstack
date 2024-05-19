@@ -27,9 +27,9 @@ passport.use(
       User.findOne({ googleId: profile.id }).then((existingUser) => {
         if (existingUser) {
           // we have that user
+          done(null, existingUser);
         } else {
           // we DON'T have that user, creat him in DB
-          done(null, existingUser);
           new User({
             googleId: profile.id,
           })
@@ -42,3 +42,5 @@ passport.use(
     }
   )
 );
+
+// TODO: ADD SOME OTHER AUTH FOR E.G. FACEBOOK/LINKEDIN/SPOTIFY/GH
